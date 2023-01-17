@@ -4,7 +4,7 @@ RED ='\033[0;31m'
 RESET='\033[0;0m'
 
 def err(string: str):
-    print(f"{RED}{string}")
+    print(f"{RED}{string}{RESET}")
 
 def print_help():
         print(f"""Collatz Conjecture - the math magic.
