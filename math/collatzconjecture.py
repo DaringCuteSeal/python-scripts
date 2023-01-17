@@ -22,6 +22,10 @@ def numparse(num: int | str) -> int:
             err(f"ERROR: negative number not allowed")
             exit(1)
 
+        elif parsed == 0:
+            err(f"ERROR: zero not allowed")
+            exit(1)
+
         return int(num)
     except ValueError:
         err(f"ERROR: invalid number: {num}")
@@ -67,7 +71,7 @@ def loop_auto() -> None:
 
 def main():
     try:
-        print(f"{RED}Collatz Conjecture of {NUM}{RESET}")
+        print(f"{RED}Collatz Conjecture of {NUM}:\n{RESET}")
 
         if ITER == "auto":
             loop_auto()
