@@ -22,7 +22,7 @@ def numparse(num: int | str) -> int:
             err(f"ERROR: negative number not allowed")
             exit(1)
 
-        elif parsed == 0:
+        if parsed == 0:
             err(f"ERROR: zero not allowed")
             exit(1)
 
@@ -31,19 +31,7 @@ def numparse(num: int | str) -> int:
         err(f"ERROR: invalid number: {num}")
         exit(1)
 
-if len(argv) > 1:
-    if argv[1] == "--help":
-        print_help()
-        exit(0)
-    NUM = numparse(argv[1])
-    if len(argv) < 3:
-        ITER = "auto"
-    else:
-        ITER = numparse(argv[2])
 
-else:
-    err("ERROR: no arguments supplied!")
-    exit(1)
 
 def calculate(num: int) -> int:
     if num % 2:
@@ -71,6 +59,19 @@ def loop_auto() -> None:
 
 def main():
     try:
+        if len(argv) > 1:
+            if argv[1] == "--help":
+                print_help()
+                return
+            NUM = numparse(argv[1])
+            if len(argv) < 3:
+                ITER = "auto"
+            else:
+                ITER = numparse(argv[2])
+
+        else:
+            err("ERROR: no arguments supplied!")
+            exit(1)
         print(f"{RED}Collatz Conjecture of {NUM}:\n{RESET}")
 
         if ITER == "auto":
@@ -80,4 +81,5 @@ def main():
     except KeyboardInterrupt:
         err("Terminated")
 
-main()
+if __name__ == "__main__":
+    main()
